@@ -5,7 +5,7 @@ import '../../network/local/SharedPreferences.dart';
 import '../../shared/Const.dart';
 import '../../shared/Cubit/Shop_cubit.dart';
 import '../../shared/Cubit/Shop_state.dart';
-import '../login/loginscreen.dart';
+import '../socShopApp/loginscreen.dart';
 
 class S4 extends StatelessWidget {
   TextEditingController? emailcontroller = TextEditingController();

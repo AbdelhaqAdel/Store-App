@@ -2,8 +2,11 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:new_app/shared/components/components.dart';
 import '../../network/local/SharedPreferences.dart';
-import 'loginscreen.dart';
+import '../../shared/components/constants.dart';
+import '../shop_App/Layout/LayoutScreen.dart';
+import '../shop_App/login/ShopLogin.dart';
 import 'registercubit.dart';
 import 'registerstate.dart';
 
@@ -20,24 +23,13 @@ class Registerscreen extends StatelessWidget {
       create: (context) => register_cubit(),
       child: BlocConsumer<register_cubit, register_state>(
         listener: (context, state) {
-          if (register_cubit.get(context).registermodel_o?.data != null) {
-            Fluttertoast.showToast(
-                msg: '${register_cubit.get(context).registermodel_o?.message}',
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.BOTTOM,
-                timeInSecForIosWeb: 5,
-                backgroundColor: Colors.green,
-                textColor: Colors.black,
-                fontSize: 16.0);
-          } else {
-            Fluttertoast.showToast(
-                msg: '${register_cubit.get(context).registermodel_o?.message}',
-                toastLength: Toast.LENGTH_LONG,
-                gravity: ToastGravity.BOTTOM,
-                timeInSecForIosWeb: 5,
-                backgroundColor: Colors.red,
-                textColor: Colors.black,
-                fontSize: 16.0);
+          if(state is register_success_state){
+          if (state.registmodel.status!) {
+            Token = state.registmodel.data!.token!;
+            NavigationAndFinish(context, Shoplayout());
+          }  else{
+            print(state.registmodel.message);
+          }
           }
         },
         builder: (context, state) {
@@ -177,7 +169,6 @@ class Registerscreen extends StatelessWidget {
                                   name: namecontroller.text,
                                   phone: phonecontroller.text,
                                 );
-
                               }
                             },
                             child: Container(
@@ -224,7 +215,7 @@ class Registerscreen extends StatelessWidget {
                                 Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => LoginScreen()),
+                                        builder: (context) => ShopLogin()),
                                     (route) => false);
                               },
                               child: Text(

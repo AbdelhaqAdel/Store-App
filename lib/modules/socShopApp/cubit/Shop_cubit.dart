@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/Seachmodel.dart';
-import '../../models/updatemodel.dart';
+import '../../modules/socShopApp/updatemodel.dart';
 import '../../models/usernodel.dart';
 import '../../modules/Screen_layout/S1.dart';
 import '../../modules/Screen_layout/S2.dart';
@@ -15,7 +15,7 @@ import 'Shop_state.dart';
 
 class Shop_cubit extends Cubit<Shop_state> {
   Shop_cubit() : super(product_ini_state());
-  static Shop_cubit get(context) => BlocProvider.of(context);
+  static  Shop_cubit get(context) => BlocProvider.of(context);
 
   List<Widget> NavBar = [S1(), S2(), S3(), S4()];
   int NavBar_index = 0;
