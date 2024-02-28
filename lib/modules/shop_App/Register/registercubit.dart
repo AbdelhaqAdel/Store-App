@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../models/user/shop_model/user/registermodel.dart';
-import '../../network/remote/dio_helper.dart';
-import '../../shared/network/EndPoint.dart';
+import '../../../models/user/shop_model/user/registermodel.dart';
+import '../../../network/remote/dio_helper.dart';
+import '../../../shared/network/EndPoint.dart';
 import 'registerstate.dart';
 
 

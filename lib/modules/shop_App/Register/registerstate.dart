@@ -1,6 +1,6 @@
 
 
-import '../../models/user/shop_model/user/registermodel.dart';
+import '../../../models/user/shop_model/user/registermodel.dart';
 
 abstract class register_state {}
 

@@ -1,75 +1,24 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'modules/shop_App/Layout/LayoutScreen.dart';
 import 'modules/shop_App/On_boarding/onBoardingScreen.dart';
-import 'network/local/SharedPreferences.dart';
 import 'network/remote/dio_helper.dart';
-import 'shared/components/bloc_observer.dart';
 
-void main() async{
-
-   WidgetsFlutterBinding.ensureInitialized();
-   
-    Bloc.observer = MyBlocObserver();
+void main() {
     DioHelper.init();
-   await CachHelper.init;
-   Widget widget;
-   WidgetsFlutterBinding.ensureInitialized();
-   // await Firebase.initializeApp(
-   //   options: DefaultFirebaseOptions.currentPlatform,
-   // );
-   //token=DioHelper.GetData()
-   //Token=CachHelper.getData(key: 'token');
-   //print(Token);
-   bool? isDark =CachHelper.getData(key: 'isDark');
-   bool? OnBoarding = CachHelper.getData(key: 'onboarding');
-   print(OnBoarding);
-   // if (OnBoarding != null) {
-   //   if (Token != null) {
-   //     widget = Shoplayout();
-   //   } else {
-   //     widget = ShopLogin();
-   //   }
-   // } else {
-   //   widget = OnBoarding()!;
-   // }
-
    runApp(
       MyApp(
-    isDark: isDark,
-    onBoarding: OnBoarding,
   )
   );
 }
 
 class MyApp extends StatelessWidget {
-
- // const MyApp({Key? key}) : super(key: key);
-  final bool? isDark ;
-  final bool? onBoarding ;
-  MyApp({
-    this.isDark,
-    this.onBoarding
-});
-  // This widget is the root of your application.
+  MyApp();
   @override
   Widget build(BuildContext context) { 
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      //theme: LightTheme,
-      //darkTheme:darkTheme,
-     // themeMode:appcubit.get(context).isDark ?ThemeMode.dark : ThemeMode.light ,
-      home: onBoarding==true ?Shoplayout():OnBoarding (),
+      home: OnBoarding (),
     );
-    
   }
- // @override
-  // void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  //   super.debugFillProperties(properties);
-  //   properties.add(StringProperty('x', x));
-  // }
 }
 
 

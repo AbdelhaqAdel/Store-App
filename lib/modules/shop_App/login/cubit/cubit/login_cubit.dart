@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../../../models/user/shop_model/LoginShopModel.dart';
+import '../../../../../models/user/shop_model/user/registermodel.dart';
+import '../../../../../models/user/shop_model/user/LoginShopModel.dart';
 import '../../../../../network/remote/dio_helper.dart';
 import '../../../../../shared/network/EndPoint.dart';
 
@@ -12,7 +13,6 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<ShopLoginState> {
   LoginCubit() : super(shopLoginInitialState());
-
   static LoginCubit get(context)=> BlocProvider.of(context);
   IconData suffix=Icons.visibility_outlined;
   bool ispassowrdShown=true;
@@ -42,4 +42,8 @@ void changePasswordVisibility(){
     suffix=ispassowrdShown?Icons.visibility_off_outlined:Icons.visibility_outlined;
   emit(shopLoginIsbasswordState());
 }
+
+
+
+
 }

@@ -62,6 +62,14 @@ class shopGetUserErrorState extends ShopState {
 
   shopGetUserErrorState();
 }
+
+
+class update_loading_state extends ShopState{}
+class update_success_state extends ShopState{}
+class update_error_state extends ShopState{
+  String? error;
+  update_error_state(this.error);
+}
 /*-----------------*/
 // class shopSearchLoadingState extends ShopState {}
 //

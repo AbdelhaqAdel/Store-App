@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:new_app/shared/components/components.dart';
-import '../../network/local/SharedPreferences.dart';
-import '../../shared/components/constants.dart';
-import '../shop_App/Layout/LayoutScreen.dart';
-import '../shop_App/login/ShopLogin.dart';
+import '../../../shared/components/constants.dart';
+import '../Layout/LayoutScreen.dart';
+import '../login/ShopLogin.dart';
 import 'registercubit.dart';
 import 'registerstate.dart';
 

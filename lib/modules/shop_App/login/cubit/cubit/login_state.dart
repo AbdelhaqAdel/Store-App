@@ -9,9 +9,7 @@ class shopLoginLoadingState extends ShopLoginState {}
 
 class shopLoginSuccessState extends ShopLoginState {
    final shopLoginModel loginmodel;
-
   shopLoginSuccessState(this.loginmodel);
-
 }
 
 class shopLoginErrorState extends ShopLoginState {
@@ -19,3 +17,5 @@ class shopLoginErrorState extends ShopLoginState {
    shopLoginErrorState(this.error);
 }
 class shopLoginIsbasswordState extends ShopLoginState {}
+
+

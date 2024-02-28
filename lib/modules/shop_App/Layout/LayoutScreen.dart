@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../shared/components/constants.dart';
-import '../../../shared/network/local/cache_helper.dart';
 import '../ShopHome/Cubit/Shop_cubit.dart';
-import '../ShopScreens/SearchScreen/ShopSearchScreen.dart';
 class Shoplayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
 
-      create: (BuildContext context) => ShopCubit()..GetHomeData(token: Token)..GetcategoriesData(token: Token)..GetFavoritesDatal(token: Token)..GetUserData(token: Token),
+      create: (BuildContext context) => ShopCubit()..GetHomeData(token: Token)..
+      GetcategoriesData(token: Token)..GetFavoritesDatal(token: Token)..
+      GetUserData(token: Token),
       child: BlocConsumer<ShopCubit, ShopState>(
           listener: (context, state) {
           },
@@ -20,14 +20,14 @@ class Shoplayout extends StatelessWidget {
 
               appBar: AppBar(
                 title: Text('Salla'),
-                actions: [IconButton(onPressed: (){
+                actions: [
+                  IconButton(onPressed: (){
 
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ShopSearchScreen(),));
-                  print(Token);
-                   print('/////////////////////////////');
                 }, icon: Icon(Icons.search))],
               ),
               bottomNavigationBar: BottomNavigationBar(
+                unselectedItemColor: Colors.blue,
+                selectedItemColor: Colors.grey[600],
                 currentIndex:cubit.NavBar_index ,
                 onTap: (index){
                   cubit.NavBar_M(index: index);

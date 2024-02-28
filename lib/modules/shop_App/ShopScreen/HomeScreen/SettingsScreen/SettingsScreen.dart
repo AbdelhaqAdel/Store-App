@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../models/user/shop_model/LoginShopModel.dart';
+import '../../../../../models/user/shop_model/user/LoginShopModel.dart';
 import '../../../../../shared/components/constants.dart';
 import '../../../ShopHome/Cubit/Shop_cubit.dart';
 
@@ -99,20 +99,57 @@ class SettingsScreen extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
+                    InkWell(
+                      onTap: () {
+
+                        cubit.update_fun(
+                          name: nameController.text,
+                          email: emailController.text,
+                          phone: phoneController.text,
+                          token: Token,
+                        );
+
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Update',
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.grey[300],
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
                      Container(
                         width: double.infinity,
-                        height: 60,
+                        height: 55,
                         color: Colors.blue,
                         child: TextButton(onPressed:(){
 
                           LogoOut(context);
                         }, child: Text('Logout',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 24,
                           color: Colors.white,
+                          fontWeight: FontWeight.w800,
                         ),
                         )),
                       ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
                   ],
                 ),
               ),

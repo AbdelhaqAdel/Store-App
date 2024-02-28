@@ -25,12 +25,14 @@ class DioHelper{
   })async{
    dio.options.headers={
      'lang':lang,
-   'authorizatio':token??'',
+     'authorization':token??'',
      'Content-Type':'application/json',
    };
     return await dio.get(url ,
       queryParameters: query??null,);
   }
+
+
  static Future<Response> PostData({
    required var url,
    Map <String,dynamic>? query,
@@ -41,7 +43,7 @@ class DioHelper{
  {
    dio.options.headers={
      'lang':lang,
-     'authorizatio':token??'',
+     'authorization':token??'',
      'Content-Type':'application/json',
    };
    return dio.post(
@@ -50,25 +52,27 @@ class DioHelper{
      data: data,
    );
  }
+
+
 }
 
-
-class DioHelper2{
-  static late Dio dio;
-  static init(){ //initialization for dio object
-    dio = Dio(
-      BaseOptions(
-          baseUrl: 'https://newsapi.org/',
-          receiveDataWhenStatusError: true,
-      ),
-
-    ) ;
-  }
-
-  static Future<Response> GetData({
-    required var url,
-    required Map <String,dynamic>? query,
-  })async{
-    return await dio.get(url , queryParameters: query,);
-  }
-}
+//
+// class DioHelper2{
+//   static late Dio dio;
+//   static init(){ //initialization for dio object
+//     dio = Dio(
+//       BaseOptions(
+//           baseUrl: 'https://newsapi.org/',
+//           receiveDataWhenStatusError: true,
+//       ),
+//
+//     ) ;
+//   }
+//
+//   static Future<Response> GetData({
+//     required var url,
+//     required Map <String,dynamic>? query,
+//   })async{
+//     return await dio.get(url , queryParameters: query,);
+//   }
+// }

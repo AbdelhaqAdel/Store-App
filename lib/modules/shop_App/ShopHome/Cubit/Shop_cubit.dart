@@ -5,9 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:meta/meta.dart';
 import 'package:new_app/models/user/shop_model/GetFavoritesModel.dart';
-import 'package:new_app/models/user/shop_model/LoginShopModel.dart';
+import 'package:new_app/models/user/shop_model/user/LoginShopModel.dart';
 import '../../../../models/user/shop_model/Categories_model.dart';
 import '../../../../models/user/shop_model/HomeModel.dart';
+import '../../../../models/user/shop_model/user/updatemodel.dart';
 import '../../../../network/remote/dio_helper.dart';
 import '../../../../shared/components/constants.dart';
 import '../../../../shared/network/EndPoint.dart';
@@ -116,21 +117,6 @@ class ShopCubit extends Cubit<ShopState> {
       print(categories?.data!.data?[0].image);
       List Json = value?.data['response'];
 
-      // for (var element in Json) {
-      //   categorisList.add(Datum.fromJson(element));
-      // }
-      // for(var ss in categorisList) {
-      //   print(ss.image);
-      // }
-      // homedata?.data?.products?.forEach((element) {
-      // favorites.addAll({
-      //   element.id: element.inFavorites,
-      // });
-      // });
-      // print(favorites);
-      //
-      // print('_________________________________________');
-      // print('_________________________________________');
 
       emit(shopCategorySuccessState());
     }).catchError((error) {
@@ -159,7 +145,6 @@ class ShopCubit extends Cubit<ShopState> {
       // print(homedata?.status);
       print(getFavoritesModel?.data?.data?[0].product?.image);
       //List Json = value?.data['response'];
-
       // for (var element in Json) {
       //   categorisList.add(Datum.fromJson(element));
       // }
@@ -204,18 +189,38 @@ class ShopCubit extends Cubit<ShopState> {
   }
 
 
+
+  updatemodel? updatemodel_o;
+  void update_fun({
+    String? token,
+    required String? name,
+    required String? email,
+    required String? phone,
+  }) async {
+    emit(update_loading_state());
+    await DioHelper.Putdata(
+        url: UPDATE,
+        token: token,
+        data: {'name': name, 'email': email, 'phone': phone}).then((value) {
+      print(value?.data);
+
+      print(email);
+      print(name);
+      print(phone);
+      // print('_________________________________________');
+      updatemodel_o = updatemodel.fromJson(value?.data);
+      if(updatemodel_o?.data==null)
+      {
+        updatemodel_o=null;
+      }
+      else
+        Token=updatemodel_o?.data?.token;
+      GetUserData(token: Token);
+      emit(update_success_state());
+
+    }).catchError((error) {
+      print(error.toString());
+      emit(update_error_state(error));
+    });
+  }
 }
-
-
-
-
-
-/* if(value.statusCode==200) {
-        List Json = value.data;
-        for (var element in Json) {
-          home.add(HomeModel.fromJson(element));
-        }
-        for (var element2 in home) {
-          print(element2.status);
-        }
-        emit(shopHomeSuccessState());*/

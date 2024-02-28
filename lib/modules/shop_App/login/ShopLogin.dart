@@ -8,9 +8,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../shared/components/components.dart';
 import '../../../shared/components/constants.dart';
-import '../../../shared/network/local/cache_helper.dart';
+import '../Register/Registerscreen.dart';
 import '../Layout/LayoutScreen.dart';
-import '../register/ShopRegister.dart';
 import 'cubit/cubit/login_cubit.dart';
 
 class ShopLogin extends StatelessWidget {
@@ -26,34 +25,11 @@ class ShopLogin extends StatelessWidget {
           listener: (context, state) {
             if(state is shopLoginSuccessState){
               if(state.loginmodel.status!){
-                  print(state.loginmodel.message);
-                  print(state.loginmodel.data!.token);
                   Token = state.loginmodel.data!.token!;
-                  CachHelper.saveData(key: 'token', value: state.loginmodel.data?.token);
-                  print(CachHelper.getData(key: 'token'));
-                   print(state.loginmodel?.data?.token);
                   NavigationAndFinish(context, Shoplayout());
-                  Fluttertoast.showToast(
-                      msg: state.loginmodel.message!,
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 5,
-                      backgroundColor: Colors.green,
-                      textColor: Colors.white,
-                      fontSize: 16.0
-                  );
               }
               else{
                 print(state.loginmodel.message);
-                Fluttertoast.showToast(
-                    msg: state.loginmodel.message!,
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 5,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0
-                );
               }
             }
           },
@@ -117,16 +93,6 @@ class ShopLogin extends StatelessWidget {
                               controller: passwordController,
                               keyboardType:TextInputType.emailAddress,
                               obscureText: LoginCubit.get(context).ispassowrdShown,
-                              // enabled: isClickable,
-                              //  onFieldSubmitted: (value) {
-                              //    onSubmit!(value);
-                              //  },
-                              //  onChanged: (value) {
-                              //    onChange!(value);
-                              //  },
-                              //  onTap: () {
-                              //    onTap!();
-                              //  },
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Password can\'t be empty';
@@ -156,6 +122,7 @@ class ShopLogin extends StatelessWidget {
                             SizedBox(
                               height: 30,
                             ),
+
                             ConditionalBuilder(
                               condition: state is! shopLoginLoadingState,
                               builder: (context) => defaultButton(
@@ -183,7 +150,7 @@ class ShopLogin extends StatelessWidget {
                                 ),
                                 defaultTextButton(
                                     function: () {
-                                      NavigateTo(context, ShopRegister());
+                                      NavigateTo(context, Registerscreen());
                                     },
                                     text: 'register now'),
                               ],

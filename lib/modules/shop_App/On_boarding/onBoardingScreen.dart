@@ -6,7 +6,6 @@ import 'package:new_app/shared/components/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../shared/components/components.dart';
-import '../../../shared/network/local/cache_helper.dart';
 import '../../../shared/styles/colors.dart';
 import '../login/ShopLogin.dart';
 
@@ -47,20 +46,6 @@ class _OnBoardingState extends State<OnBoarding> {
       body: 'on board 3 body'
       ),
   ];
-  // void submit() async {
-  //   await CacheHelper.setOnBoardingStatus(true);
-  //   bool onBoardingStatus = await CacheHelper.getOnBoardingStatus();
-  //   print('onBoarding status: $onBoardingStatus');
-  // }
-  void submit() {
-   CachHelper.saveData(key: 'onBoarding', value: true).then((value) {
-    //if(value==true){
-      // CachHelper.saveData(key: 'onBoarding', value: true);
-       NavigationAndFinish(context,ShopLogin());
-       //  print(CachHelper.getData(key: 'onBoarding'));
-    // }
-   });
-  }
 
   var boardcontroller = PageController();
 
@@ -71,26 +56,10 @@ class _OnBoardingState extends State<OnBoarding> {
       appBar: AppBar(
         actions: [
           TextButton(onPressed:(){
-            submit();
-            // CachHelper.saveData(key: 'onboarding', value: true).then((value){
-            //   if(value==true){
-            //     Navigator.pushAndRemoveUntil(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) => ShopLogin(),
-            //         ),
-            //             (route) => false);
-            //   }
-            // });
-           print(CachHelper.getData(key: 'onBoarding'));
+            NavigationAndFinish(context,ShopLogin());
     },
-           // print(CacheHelper.getData(key: 'onBoarding'));
            child: Text('Skip')),
-         // defaultTextButton(
-         //      function : submit,
-         //   text:'Skip',
-         //     ),
-         
+
         ], 
       ),
       body:Padding(
@@ -121,19 +90,19 @@ class _OnBoardingState extends State<OnBoarding> {
             Row(
               children: [
                 SmoothPageIndicator(controller: boardcontroller,
-                effect: ExpandingDotsEffect(
-                  dotColor: Colors.grey,
-                  activeDotColor: defultColor,
-                  dotHeight: 10,
-                  dotWidth: 10,
-                  spacing: 5,
-                  expansionFactor: 4,
-                ),
-                 count: boarding.length),
+                    effect: ExpandingDotsEffect(
+                      dotColor: Colors.grey,
+                      activeDotColor: defultColor,
+                      dotHeight: 10,
+                      dotWidth: 10,
+                      spacing: 5,
+                      expansionFactor: 4,
+                    ),
+                    count: boarding.length),
                 Spacer(),
                 FloatingActionButton(onPressed: (){
                   if(islast){
-                    submit();
+                    NavigationAndFinish(context,ShopLogin());
                  }
                  else{
                   boardcontroller.nextPage(duration: Duration(
@@ -159,14 +128,14 @@ class _OnBoardingState extends State<OnBoarding> {
         children: [
            Expanded(
              child: Image(
-                image: AssetImage('${model.image}'),
+                image: AssetImage(model.image),
               ),
            ),
           
           SizedBox(
             height: 20,
           ),
-          Text('${model.title}',        
+          Text(model.title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
              fontSize: 24,
